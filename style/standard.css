@@ -18,3 +18,8 @@ a {
 button {
   cursor: pointer;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  color: #118eed;
+}

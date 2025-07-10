@@ -1,5 +1,32 @@
 header {
-  background-color: #ee9e27;
-  padding: 20px;
+  background-color: #118eed;
+  padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+article {
+  margin: 20px;
+}
+
+.rating {
+  color: #118eed;
+  margin-top: 16px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  background-color: rgb(230, 230, 230);
+  font-size: 16px;
+  height: 48px;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+.menu a {
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
 }
