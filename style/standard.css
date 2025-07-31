@@ -13,6 +13,7 @@ body {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 button {
@@ -20,6 +21,9 @@ button {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  color: #118eed;
+  width: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #898989;
+  border-radius: 4px;
 }
