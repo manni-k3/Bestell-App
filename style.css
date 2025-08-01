@@ -41,6 +41,9 @@ header {
 }
 
 .li_dish {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 16px;
   border: 2px solid #ddd;
   border-radius: 10px;
