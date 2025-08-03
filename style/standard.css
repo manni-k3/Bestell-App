@@ -18,6 +18,12 @@ a {
 
 button {
   cursor: pointer;
+  border-radius: 6px;
+  border: 2px solid #ddd;
+}
+
+.button_plus {
+  color: #118eed;
 }
 
 ::-webkit-scrollbar {

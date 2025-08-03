@@ -1,16 +1,19 @@
-header {
+.header {
   background-color: #118eed;
   padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .main_content {
-  width: calc(100% - 308px);
-  border: 2px solid #0fcedb;
+  width: 100%;
+  min-height: 100vh;
   gap: 2px;
   display: flex;
   flex-direction: row;
   flex-grow: 1;
+}
+
+.main_section {
+  flex: 1;
 }
 
 .welcome {
@@ -28,11 +31,12 @@ header {
   background-color: rgb(230, 230, 230);
   font-size: 16px;
   height: 48px;
+  margin-right: 20px;
 }
 
 .main_dishes {
   text-decoration: none;
-  margin: 0 20px;
+  margin: 0 30px;
   color: #333;
 }
 
@@ -50,12 +54,14 @@ header {
 }
 
 .li_dish {
+  margin: 10px 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 10px;
+  box-shadow: 0px 0px 7px -2px #8e8e8e;
 }
 
 .li_dish p {
@@ -67,24 +73,24 @@ header {
 }
 
 .basket {
-  border: 2px solid #db0f0f;
-  width: 300px;
-  flex-grow: 1;
+  width: 250px;
+  height: fit-content;
   padding: 8px;
+  position: sticky;
+  top: 8px;
+  box-shadow: -4px -1px 26px 1px rgba(0, 0, 0, 0.74);
+  -webkit-box-shadow: -1px 0px 20px 0px rgba(0, 0, 0, 0.74);
 }
 
 .basket_content {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 400px;
-  position: sticky;
-  top: 0;
-  background-color: rgb(209, 209, 209);
+  height: 100vh;
 }
 
 footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   height: 80px;
