@@ -3,6 +3,12 @@
   padding: 15px;
 }
 
+.main_dishes_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main_content {
   width: 100%;
   min-height: 100vh;
@@ -47,6 +53,11 @@
 }
 
 .ul_dishes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
   width: 100%;
   margin-top: 10px;
   list-style-type: none;
@@ -54,6 +65,7 @@
 }
 
 .li_dish {
+  width: 700px;
   margin: 10px 0px;
   display: flex;
   align-items: center;
