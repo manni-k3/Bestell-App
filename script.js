@@ -71,13 +71,6 @@ function renderBasket() {
 }
 
 function order() {
-  if (basket.length === 0) {
-    alert(
-      "Dein Warenkorb ist leer. Bitte füge Artikel hinzu, bevor du bestellst."
-    );
-    return;
-  }
-
   let orderDetails = basket
     .map((item) => `${item.quantity}x ${item.name}`)
     .join(", ");
@@ -93,7 +86,7 @@ function order() {
   const dialog = document.getElementById("dialog");
   dialog.showModal();
 
-  const confirmOrderButton = document.getElementById("confirm-order-button");
+  const confirmOrderButton = document.getElementById("confirm_order");
   confirmOrderButton.addEventListener("click", () => {
     alert(`Bestellung aufgeben: ${orderDetails}. Gesamtsumme: ${totalSum} €`);
 
@@ -102,7 +95,7 @@ function order() {
     dialog.close();
   });
 
-  const cancelOrderButton = document.getElementById("cancel-order-button");
+  const cancelOrderButton = document.getElementById("cancel_order_button");
   cancelOrderButton.addEventListener("click", () => {
     dialog.close();
   });
