@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="./style/fonts.css" />
     <link rel="stylesheet" href="./style/img.css" />
     <link rel="stylesheet" href="./style/standard.css" />
+    <link rel="stylesheet" href="./style/dialog.css" />
+    <link rel="stylesheet" href="./style/basket.css" />
   </head>
   <body onload="init()">
     <header class="header">
@@ -52,6 +54,21 @@
               alt="Abbildung eines Pasta Gerichts"
             />
           </section>
+
+          <dialog id="dialog">
+            <form method="dialog">
+              <h2>Bestellung aufgeben</h2>
+              <p>Bitte bestätigen Sie Ihre Bestellung.</p>
+              <div class="dialog-buttons">
+                <button id="confirm_order" class="confirm_button">
+                  Bestätigen
+                </button>
+                <button id="cancel_order" class="cancel_button">
+                  Abbrechen
+                </button>
+              </div>
+            </form>
+          </dialog>
 
           <section class="main_dishes">
             <header id="header_dishes" class="main_dishes_header">

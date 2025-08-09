@@ -26,6 +26,11 @@ button {
   color: #118eed;
 }
 
+.order-button {
+  color: #fff;
+  background-color: #118eed;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
 }

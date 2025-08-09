@@ -69,3 +69,41 @@ function renderBasket() {
   basketContent.appendChild(ul);
   basketContent.innerHTML += templateBasketTotal(totalSum);
 }
+
+function order() {
+  if (basket.length === 0) {
+    alert(
+      "Dein Warenkorb ist leer. Bitte füge Artikel hinzu, bevor du bestellst."
+    );
+    return;
+  }
+
+  let orderDetails = basket
+    .map((item) => `${item.quantity}x ${item.name}`)
+    .join(", ");
+  let totalSum = basket
+    .reduce(
+      (sum, item) =>
+        sum + parseFloat(item.price.replace(",", ".")) * item.quantity,
+      0
+    )
+    .toFixed(2)
+    .replace(".", ",");
+
+  const dialog = document.getElementById("dialog");
+  dialog.showModal();
+
+  const confirmOrderButton = document.getElementById("confirm-order-button");
+  confirmOrderButton.addEventListener("click", () => {
+    alert(`Bestellung aufgeben: ${orderDetails}. Gesamtsumme: ${totalSum} €`);
+
+    basket = [];
+    renderBasket();
+    dialog.close();
+  });
+
+  const cancelOrderButton = document.getElementById("cancel-order-button");
+  cancelOrderButton.addEventListener("click", () => {
+    dialog.close();
+  });
+}

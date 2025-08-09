@@ -13,7 +13,7 @@ function templateDishes(dish, index, dishCategory) {
 function templateBasketItem(item, itemSum) {
   return `
       <li>
-        <div>
+        <div class="basket_item">
           <span>${item.quantity}x</span>
           <span>${item.name}</span>
         </div>
@@ -24,9 +24,10 @@ function templateBasketItem(item, itemSum) {
 
 function templateBasketTotal(totalSum) {
   return `
-      <div class="basket-total">
+      <div class="basket_total">
         <span>Gesamtsumme:</span>
         <span>${totalSum.toFixed(2).replace(".", ",")} €</span>
+        <button id="order-button" class="order-button" onclick="order()">Bestellen</button>
       </div>
     `;
 }
