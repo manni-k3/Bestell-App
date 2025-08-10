@@ -1,20 +1,18 @@
 .basket {
-  width: 250px;
-  margin: 8px;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 24px;
   padding: 16px;
-  position: sticky;
-  top: 24px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
-  box-shadow: 0px 0px 7px -2px #8e8e8e;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
 
 .basket_header {
-  display: flex;
-  padding: 8px 0;
+  text-align: center;
+  padding-bottom: 16px;
   margin-bottom: 16px;
-  justify-content: center;
   border-bottom: 1px solid #ddd;
 }
 
@@ -45,7 +43,33 @@
 }
 
 .basket_total {
-  margin-top: auto;
-  font-size: 1.1em;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #333;
+  font-size: 1.2em;
   font-weight: bold;
+  text-align: right;
+}
+
+.basket_total_line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.ul_basket {
+  list-style-type: none;
+}
+.ul_basket li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+.ul_basket li:last-child {
+  border-bottom: none;
+}
+.basket_item span:first-child {
+  margin-right: 10px;
 }

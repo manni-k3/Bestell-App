@@ -1,14 +1,14 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
   scroll-behavior: smooth;
 }
 
 body {
   background-color: #f0f0f0;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 0;
 }
 
 a {
@@ -20,15 +20,23 @@ button {
   cursor: pointer;
   border-radius: 6px;
   border: 2px solid #ddd;
+  padding: 8px 12px;
+  font-size: 1rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .add-button {
   color: #118eed;
+  font-size: 1.5rem;
+  padding: 0 12px;
 }
 
 .order-button {
   color: #fff;
   background-color: #118eed;
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
 }
 
 ::-webkit-scrollbar {

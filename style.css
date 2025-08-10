@@ -10,17 +10,15 @@
 }
 
 .main_content {
-  width: 100%;
-  min-height: 100vh;
-  gap: 2px;
   display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
 }
 
 .main_section {
-  flex: 1;
+  width: 100%;
+  max-width: 800px;
 }
 
 .welcome {
@@ -34,47 +32,59 @@
 
 .menu {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
   background-color: rgb(230, 230, 230);
   font-size: 16px;
-  height: 48px;
-  margin: 20px;
+  padding: 12px;
+  margin: 0 16px 16px 16px;
+  border-radius: 8px;
 }
 
 .main_dishes {
   text-decoration: none;
-  margin: 0 30px;
   color: #333;
 }
 
 .menu a {
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.menu a:hover {
+  background-color: #ddd;
+}
+
+.main_dishes_header {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 24px 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #118eed;
 }
 
 .ul_dishes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-direction: column;
-  align-content: center;
-  width: 100%;
-  margin: 16px 0 16px 0;
   list-style-type: none;
-  padding-inline-start: 0;
+  padding: 0;
 }
 
 .li_dishes {
-  width: 700px;
-  margin: 10px 0px;
+  width: 100%;
+  margin: 10px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 16px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  box-shadow: 0px 0px 7px -2px #8e8e8e;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+}
+
+.li_dish_info h4 {
+  margin-bottom: 8px;
 }
 
 .li_dish p {
@@ -83,24 +93,16 @@
 
 .price {
   color: #118eed;
+  font-weight: bold;
 }
 
 footer {
-  position: relative;
-  bottom: 0;
   width: 100%;
-  height: 80px;
   background-color: #118eed;
   color: #fff;
   margin-top: 20px;
-  padding: 20px 0;
+  padding: 20px;
   text-align: center;
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
 
 .footer-nav {
@@ -111,8 +113,4 @@ footer {
   color: #fff;
   text-decoration: none;
   margin: 0 10px;
-}
-
-.footer-nav a:hover {
-  text-decoration: underline;
 }

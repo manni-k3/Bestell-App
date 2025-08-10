@@ -88,8 +88,6 @@ function order() {
 
   const confirmOrderButton = document.getElementById("confirm_order");
   confirmOrderButton.addEventListener("click", () => {
-    alert(`Bestellung aufgeben: ${orderDetails}. Gesamtsumme: ${totalSum} €`);
-
     basket = [];
     renderBasket();
     dialog.close();

@@ -1,18 +1,15 @@
 dialog {
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 7px -2px #8e8e8e;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   border: none;
-}
-
-dialog {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
@@ -34,26 +31,23 @@ dialog p {
 .dialog-buttons {
   display: flex;
   justify-content: space-around;
+  gap: 16px;
 }
 
+.dialog-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+}
 .confirm_button,
 .cancel_button {
-  padding: 12px 24px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  color: #333;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.2s ease;
+  flex: 1;
 }
-
 .confirm_button:hover {
   background-color: #118eed;
   color: #fff;
   border-color: #118eed;
 }
-
 .cancel_button:hover {
   background-color: #ddd;
 }

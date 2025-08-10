@@ -1,0 +1,22 @@
+@media (min-width: 1024px) {
+  .main_content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 32px;
+    padding: 24px;
+  }
+
+  .main_section {
+    flex: 1;
+    max-width: none;
+  }
+
+  .basket {
+    width: 350px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 24px;
+    margin-top: 0;
+  }
+}
