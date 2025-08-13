@@ -47,6 +47,16 @@ button {
   margin: 0 3px 3px 0;
 }
 
+.close_basket_dialog_button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  color: #118eed;
+  font-size: 1rem;
+  padding: 0 8px;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
 }

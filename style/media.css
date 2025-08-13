@@ -28,6 +28,10 @@
 }
 
 @media (max-width: 1023px) {
+  .basket {
+    display: none !important;
+  }
+
   .main_content {
     flex-direction: column;
     align-items: center;
@@ -38,8 +42,18 @@
     width: 100%;
     max-width: 600px;
   }
+}
 
-  .basket {
-    display: none;
+@media (max-width: 768px) {
+  .basket_dialog {
+    width: 90vw;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 350px) {
+  .basket_buttons {
+    position: fixed;
+    bottom: 113px;
   }
 }

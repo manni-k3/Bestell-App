@@ -114,3 +114,20 @@ footer {
   text-decoration: none;
   margin: 0 10px;
 }
+
+.basket_item_count_badge {
+  display: none; /* Standardmäßig ausgeblendet */
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  background-color: #ff0000;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

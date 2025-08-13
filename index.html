@@ -39,6 +39,7 @@
       <section>
         <button id="draggableButton" class="basket_buttons">
           <img src="./assets/icons/Logo/basket-shop.png" alt="Warenkorb">
+          <div id="basketItemCount" class="basket_item_count_badge"></div>
         </button>
       </section>
     
@@ -79,6 +80,18 @@
                 </button>
               </div>
             </form>
+          </dialog>
+
+          <dialog id="basketDialog" class="basket_dialog">
+            <div class="basket_content_in_dialog">
+              <header class="basket_header">
+                <h1>Warenkorb</h1>
+                <button id="closeBasketDialogButton" class="close_basket_dialog_button">
+                  X
+                </button>
+              </header>
+              <article id="basket_content_dialog" class="basket_content"></article>
+            </div>
           </dialog>
 
           <section class="main_dishes">

@@ -1,3 +1,4 @@
+let basket = [];
 let nextItemId = 0;
 
 function init() {
@@ -5,6 +6,10 @@ function init() {
   renderDishes(dessertDishes, "dessert", "dessertDishes");
   renderDishes(drinkDishes, "drinks", "drinkDishes");
   renderBasket();
+  setupDialogListeners();
+
+  const draggableButton = document.getElementById("draggableButton");
+  draggableButton.addEventListener("click", toggleBasket);
 }
 
 function renderDishes(dishes, dishlist, dishCategory) {
@@ -49,15 +54,30 @@ function addToBasket(dishCategory, dishIndex) {
 
 function renderBasket() {
   const basketContent = document.getElementById("basket_content");
-  basketContent.innerHTML = "";
+  const basketContentDialog = document.getElementById("basket_content_dialog");
+  const basketItemCountBadge = document.getElementById("basketItemCount");
+
+  let totalItems = 0;
+  if (basket.length > 0) {
+    totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
+  }
+
+  if (totalItems > 0) {
+    basketItemCountBadge.style.display = "flex";
+    basketItemCountBadge.textContent = totalItems;
+  } else {
+    basketItemCountBadge.style.display = "none";
+  }
 
   if (basket.length === 0) {
     basketContent.innerHTML = `<p>Dein Warenkorb ist noch leer.</p>`;
+    basketContentDialog.innerHTML = `<p>Dein Warenkorb ist noch leer.</p>`;
     return;
   }
 
   const ul = document.createElement("ul");
   ul.className = "ul_basket";
+  const ulDialog = ul.cloneNode(true);
 
   let totalSum = 0;
 
@@ -66,11 +86,28 @@ function renderBasket() {
     const priceAsNumber = parseFloat(item.price.replace(",", "."));
     const itemSum = priceAsNumber * item.quantity;
     totalSum += itemSum;
-    ul.innerHTML += templateBasketItem(item);
+    const basketItemHTML = templateBasketItem(item);
+    ul.innerHTML += basketItemHTML;
+    ulDialog.innerHTML += basketItemHTML;
   }
 
+  basketContent.innerHTML = "";
   basketContent.appendChild(ul);
   basketContent.innerHTML += templateBasketTotal(totalSum);
+
+  const orderButton = basketContent.querySelector("#order-button");
+  if (orderButton) {
+    orderButton.addEventListener("click", order);
+  }
+
+  basketContentDialog.innerHTML = "";
+  basketContentDialog.appendChild(ulDialog);
+  basketContentDialog.innerHTML += templateBasketTotal(totalSum);
+
+  const orderButtonDialog = basketContentDialog.querySelector("#order-button");
+  if (orderButtonDialog) {
+    orderButtonDialog.addEventListener("click", order);
+  }
 }
 
 function order() {
@@ -87,19 +124,13 @@ function order() {
     .replace(".", ",");
 
   const dialog = document.getElementById("dialog");
+  const basketDialog = document.querySelector("#basketDialog");
+
+  if (basketDialog && basketDialog.open) {
+    basketDialog.close();
+  }
+
   dialog.showModal();
-
-  const confirmOrderButton = document.getElementById("confirm_order");
-  confirmOrderButton.addEventListener("click", () => {
-    basket = [];
-    renderBasket();
-    dialog.close();
-  });
-
-  const cancelOrderButton = document.getElementById("cancel_order_button");
-  cancelOrderButton.addEventListener("click", () => {
-    dialog.close();
-  });
 }
 
 function plusInBasket(itemId) {
@@ -118,5 +149,45 @@ function minusInBasket(itemId) {
       basket = basket.filter((item) => item.id !== itemId);
     }
     renderBasket();
+  }
+}
+
+function toggleBasket() {
+  const basketDialog = document.getElementById("basketDialog");
+
+  if (basketDialog) {
+    if (window.innerWidth <= 1023) {
+      if (basketDialog && basketDialog.open) {
+        basketDialog.close();
+      } else {
+        basketDialog.showModal();
+      }
+    }
+  }
+}
+
+function setupDialogListeners() {
+  const confirmOrderButton = document.getElementById("confirm_order");
+  const cancelOrderButton = document.getElementById("cancel_order_button");
+  const dialog = document.getElementById("dialog");
+
+  confirmOrderButton.addEventListener("click", () => {
+    basket = [];
+    renderBasket();
+    dialog.close();
+  });
+
+  cancelOrderButton.addEventListener("click", () => {
+    const basketElement = document.querySelector(".basket");
+    if (basketElement) {
+      basketElement.style.display = "block";
+    }
+    dialog.close();
+  });
+
+  if (closeBasketDialogButton && basketDialog) {
+    closeBasketDialogButton.addEventListener("click", () => {
+      basketDialog.close();
+    });
   }
 }

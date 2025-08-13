@@ -1,5 +1,3 @@
-let basket = [];
-
 let mainDishes = [
   { name: "Spaghetti Bolognese", price: "11,99 €" },
   { name: "Pasta Quattro Formaggi", price: "12,99 €" },

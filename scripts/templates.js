@@ -35,7 +35,7 @@ function templateBasketTotal(totalSum) {
       <div class="basket_total">
         <span>Gesamtsumme:</span>
         <span>${totalSum.toFixed(2).replace(".", ",")} €</span>
-        <button id="order-button" class="order-button" onclick="order()">Bestellen</button>
+        <button id="order-button" class="order-button">Bestellen</button>
       </div>
     `;
 }
