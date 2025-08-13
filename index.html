@@ -8,6 +8,7 @@
     <script src="./scripts/db.js"></script>
     <script src="./scripts/templates.js"></script>
     <script src="./script.js"></script>
+    
 
     <link
       rel="icon"
@@ -35,6 +36,13 @@
         />
       </section>
 
+      <section>
+        <button id="draggableButton" class="basket_buttons">
+          <img src="./assets/icons/Logo/basket-shop.png" alt="Warenkorb">
+        </button>
+      </section>
+    
+
       <section class="main_content">
         <section class="main_section">
           <article class="welcome">
@@ -56,6 +64,8 @@
             />
           </section>
 
+        
+
           <dialog id="dialog">
             <form method="dialog">
               <h2>Bestellung aufgeben</h2>
@@ -64,7 +74,7 @@
                 <button id="confirm_order" class="confirm_button">
                   Bestätigen
                 </button>
-                <button id="cancel_order" class="cancel_button">
+                <button id="cancel_order_button" class="cancel_button">
                   Abbrechen
                 </button>
               </div>
@@ -97,7 +107,8 @@
           <header class="basket_header"><h1>Warenkorb</h1></header>
           <article id="basket_content" class="basket_content"></article>
         </section>
-      </section>
+
+        
     </main>
     <footer>
       <p>&copy; 2024 Bestell App. Alle Rechte vorbehalten.</p>

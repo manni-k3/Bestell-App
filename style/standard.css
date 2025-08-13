@@ -39,6 +39,14 @@ button {
   padding: 12px;
 }
 
+.basket-button {
+  width: 32px;
+  color: #118eed;
+  font-size: 1rem;
+  padding: 0 8px;
+  margin: 0 3px 3px 0;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
 }

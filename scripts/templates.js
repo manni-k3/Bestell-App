@@ -10,11 +10,19 @@ function templateDishes(dish, index, dishCategory) {
         `;
 }
 
-function templateBasketItem(item, itemSum) {
+function templateBasketItem(item) {
+  const itemSum = parseFloat(item.price.replace(",", ".")) * item.quantity;
   return `
       <li>
         <div class="basket_item">
-          <span>${item.quantity}x</span>
+            <button onclick="minusInBasket(${
+              item.id
+            })" id="remove-button" class="basket-button">-</button>
+              <span>${item.quantity}x</span>
+            <button onclick="plusInBasket(${
+              item.id
+            })" id="plus-button" class="basket-button">+</button>
+            <br>
           <span>${item.name}</span>
         </div>
         <span>${itemSum.toFixed(2).replace(".", ",")} €</span>

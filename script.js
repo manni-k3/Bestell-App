@@ -1,3 +1,5 @@
+let nextItemId = 0;
+
 function init() {
   renderDishes(mainDishes, "dish-list", "mainDishes");
   renderDishes(dessertDishes, "dessert", "dessertDishes");
@@ -6,14 +8,14 @@ function init() {
 }
 
 function renderDishes(dishes, dishlist, dishCategory) {
-  let dishList = document.getElementById(dishlist);
+  const dishList = document.getElementById(dishlist);
   dishList.innerHTML = "";
 
-  let ul = document.createElement("ul");
+  const ul = document.createElement("ul");
   ul.className = "ul_dishes";
 
   for (let i = 0; i < dishes.length; i++) {
-    let dish = dishes[i];
+    const dish = dishes[i];
     ul.innerHTML += templateDishes(dish, i, dishCategory);
   }
   dishList.appendChild(ul);
@@ -30,12 +32,13 @@ function addToBasket(dishCategory, dishIndex) {
     dish = drinkDishes[dishIndex];
   }
 
-  let existingItem = basket.find((item) => item.name === dish.name);
+  const existingItem = basket.find((item) => item.name === dish.name);
 
   if (existingItem) {
     existingItem.quantity++;
   } else {
     basket.push({
+      id: nextItemId++,
       name: dish.name,
       price: dish.price,
       quantity: 1,
@@ -45,7 +48,7 @@ function addToBasket(dishCategory, dishIndex) {
 }
 
 function renderBasket() {
-  let basketContent = document.getElementById("basket_content");
+  const basketContent = document.getElementById("basket_content");
   basketContent.innerHTML = "";
 
   if (basket.length === 0) {
@@ -53,17 +56,17 @@ function renderBasket() {
     return;
   }
 
-  let ul = document.createElement("ul");
+  const ul = document.createElement("ul");
   ul.className = "ul_basket";
 
   let totalSum = 0;
 
   for (let i = 0; i < basket.length; i++) {
-    let item = basket[i];
-    let priceAsNumber = parseFloat(item.price.replace(",", "."));
-    let itemSum = priceAsNumber * item.quantity;
+    const item = basket[i];
+    const priceAsNumber = parseFloat(item.price.replace(",", "."));
+    const itemSum = priceAsNumber * item.quantity;
     totalSum += itemSum;
-    ul.innerHTML += templateBasketItem(item, itemSum);
+    ul.innerHTML += templateBasketItem(item);
   }
 
   basketContent.appendChild(ul);
@@ -71,10 +74,10 @@ function renderBasket() {
 }
 
 function order() {
-  let orderDetails = basket
+  const orderDetails = basket
     .map((item) => `${item.quantity}x ${item.name}`)
     .join(", ");
-  let totalSum = basket
+  const totalSum = basket
     .reduce(
       (sum, item) =>
         sum + parseFloat(item.price.replace(",", ".")) * item.quantity,
@@ -97,4 +100,23 @@ function order() {
   cancelOrderButton.addEventListener("click", () => {
     dialog.close();
   });
+}
+
+function plusInBasket(itemId) {
+  const item = basket.find((item) => item.id === itemId);
+  if (item) {
+    item.quantity++;
+    renderBasket();
+  }
+}
+
+function minusInBasket(itemId) {
+  const item = basket.find((item) => item.id === itemId);
+  if (item) {
+    item.quantity--;
+    if (item.quantity < 1) {
+      basket = basket.filter((item) => item.id !== itemId);
+    }
+    renderBasket();
+  }
 }

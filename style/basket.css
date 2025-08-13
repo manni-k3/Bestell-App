@@ -73,3 +73,30 @@
 .basket_item span:first-child {
   margin-right: 10px;
 }
+
+.basket_buttons {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #118eed;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0px 0px 7px -2px #8e8e8e;
+  transition: background-color 0.2s ease;
+}
+
+.basket_buttons:hover {
+  background-color: #fff;
+  color: #118eed;
+  border-color: #fff;
+}
+
+.basket_buttons img {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
