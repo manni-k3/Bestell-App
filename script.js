@@ -135,7 +135,7 @@ function calculateOrderDetails() {
 }
 
 function order() {
-  const { orderDetails, formattedtotalSum } = calculateOrderDetails();
+  calculateOrderDetails();
 
   const dialog = document.getElementById("dialog");
   const basketDialog = document.querySelector("#basketDialog");
