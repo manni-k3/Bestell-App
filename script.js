@@ -7,9 +7,7 @@ function init() {
   renderDishes(drinkDishes, "drinks", "drinkDishes");
   renderBasket();
   setupDialogListeners();
-
-  const draggableButton = document.getElementById("draggableButton");
-  draggableButton.addEventListener("click", toggleBasket);
+  setupDraggableButton();
 }
 
 function renderDishes(dishes, dishlist, dishCategory) {
@@ -55,30 +53,39 @@ function addToBasket(dishCategory, dishIndex) {
 function renderBasket() {
   const basketContent = document.getElementById("basket_content");
   const basketContentDialog = document.getElementById("basket_content_dialog");
-  const basketItemCountBadge = document.getElementById("basketItemCount");
 
-  let totalItems = 0;
-  if (basket.length > 0) {
-    totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
-  }
-
-  if (totalItems > 0) {
-    basketItemCountBadge.style.display = "flex";
-    basketItemCountBadge.textContent = totalItems;
-  } else {
-    basketItemCountBadge.style.display = "none";
-  }
+  updateBasketCount();
 
   if (basket.length === 0) {
-    basketContent.innerHTML = `<p>Dein Warenkorb ist noch leer.</p>`;
-    basketContentDialog.innerHTML = `<p>Dein Warenkorb ist noch leer.</p>`;
+    renderEmptyBasket(basketContent);
+    renderEmptyBasket(basketContentDialog);
     return;
   }
 
+  const { ul, totalSum } = createBasketList();
+  renderBasketContent(basketContent, ul, totalSum);
+  renderBasketContent(basketContentDialog, ul.cloneNode(true), totalSum);
+}
+
+function updateBasketCount() {
+  const basketItemCount = document.getElementById("basketItemCount");
+  const totalItem = basket.reduce((sum, item) => sum + item.quantity, 0);
+
+  if (totalItem > 0) {
+    basketItemCount.style.display = "flex";
+    basketItemCount.textContent = totalItem;
+  } else {
+    basketItemCount.style.display = "none";
+  }
+}
+
+function renderEmptyBasket(element) {
+  element.innerHTML = templateEmptyBasket();
+}
+
+function createBasketList() {
   const ul = document.createElement("ul");
   ul.className = "ul_basket";
-  const ulDialog = ul.cloneNode(true);
-
   let totalSum = 0;
 
   for (let i = 0; i < basket.length; i++) {
@@ -86,42 +93,49 @@ function renderBasket() {
     const priceAsNumber = parseFloat(item.price.replace(",", "."));
     const itemSum = priceAsNumber * item.quantity;
     totalSum += itemSum;
-    const basketItemHTML = templateBasketItem(item);
-    ul.innerHTML += basketItemHTML;
-    ulDialog.innerHTML += basketItemHTML;
+    ul.innerHTML += templateBasketItem(item);
   }
+  return {
+    ul,
+    totalSum,
+  };
+}
 
-  basketContent.innerHTML = "";
-  basketContent.appendChild(ul);
-  basketContent.innerHTML += templateBasketTotal(totalSum);
+function renderBasketContent(container, ulElement, totalSum) {
+  container.innerHTML = "";
+  container.appendChild(ulElement);
+  container.innerHTML += templateBasketTotal(totalSum);
+  const orderButton = container.querySelector("#order-button");
 
-  const orderButton = basketContent.querySelector("#order-button");
   if (orderButton) {
     orderButton.addEventListener("click", order);
   }
+}
 
-  basketContentDialog.innerHTML = "";
-  basketContentDialog.appendChild(ulDialog);
-  basketContentDialog.innerHTML += templateBasketTotal(totalSum);
+function calculateOrderDetails() {
+  let orderDetails = "";
+  let totalSum = 0;
 
-  const orderButtonDialog = basketContentDialog.querySelector("#order-button");
-  if (orderButtonDialog) {
-    orderButtonDialog.addEventListener("click", order);
+  for (let i = 0; i < basket.length; i++) {
+    const item = basket[i];
+
+    if (i > 0) {
+      orderDetails += ", ";
+    }
+    orderDetails += `${item.quantity}x ${item.name}`;
+
+    const priceAsNumber = parseFloat(item.price.replace(",", "."));
+    totalSum += priceAsNumber * item.quantity;
   }
+  const formattedtotalSum = totalSum.toFixed(2).replace(".", ",");
+  return {
+    orderDetails,
+    formattedtotalSum,
+  };
 }
 
 function order() {
-  const orderDetails = basket
-    .map((item) => `${item.quantity}x ${item.name}`)
-    .join(", ");
-  const totalSum = basket
-    .reduce(
-      (sum, item) =>
-        sum + parseFloat(item.price.replace(",", ".")) * item.quantity,
-      0
-    )
-    .toFixed(2)
-    .replace(".", ",");
+  const { orderDetails, formattedtotalSum } = calculateOrderDetails();
 
   const dialog = document.getElementById("dialog");
   const basketDialog = document.querySelector("#basketDialog");
@@ -190,4 +204,9 @@ function setupDialogListeners() {
       basketDialog.close();
     });
   }
+}
+
+function setupDraggableButton() {
+  const draggableButton = document.getElementById("draggableButton");
+  draggableButton.addEventListener("click", toggleBasket);
 }

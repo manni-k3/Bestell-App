@@ -39,3 +39,9 @@ function templateBasketTotal(totalSum) {
       </div>
     `;
 }
+
+function templateEmptyBasket() {
+  return `
+       <p>Dein Warenkorb ist noch leer.</p>
+    `;
+}
